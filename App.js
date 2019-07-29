@@ -1,19 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import HomeScreen from './src/screens/HomeScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const TabNavigator = createBottomTabNavigator({
+  Home: HomeScreen,
+  Settings: SettingsScreen,
 });
+
+export default createAppContainer(TabNavigator);
