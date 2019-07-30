@@ -13,8 +13,8 @@ export default function SettingsScreen() {
             data: [{ key: 1, info: '1.3' }],
           },
           {
-            title: 'Theme',
-            data: [{ key: 3, info: 'Light' }, { key: 4, info: 'Dark' }],
+            title: 'Settings',
+            data: [{ key: 3, info: 'Option 1' }, { key: 4, info: 'Option 2' }],
           },
         ]}
         renderItem={({ item }) => <SettingsItem text={item.info} />}
@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 40,
+    paddingTop: 60,
   },
 });
