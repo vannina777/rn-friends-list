@@ -47,6 +47,8 @@ const TabNavigator = createBottomTabNavigator(
       activeTintColor: 'mediumvioletred',
       style: {
         backgroundColor: 'whitesmoke',
+        height: 60,
+        paddingTop: 10,
       },
     },
   }
