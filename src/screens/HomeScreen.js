@@ -16,7 +16,7 @@ export default function HomeScreen({ navigation }) {
             }
           />
         )}
-        ItemSeparatorComponent={() => <View style={styles.listSeperator} />}
+        ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
       />
     </View>
   );
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingTop: 40,
   },
-  listSeperator: {
+  listSeparator: {
     height: StyleSheet.hairlineWidth,
     backgroundColor: 'lightgray',
     marginVertical: 5,
