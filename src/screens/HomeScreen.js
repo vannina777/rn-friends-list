@@ -1,20 +1,38 @@
-import React from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 import FriendListItem from '../components/FriendListItem';
 
 export default function HomeScreen({ navigation }) {
-  return (
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = [
+      { firstName: 'Bob', lastName: 'Doe', email: 'text1@example.com' },
+      { firstName: 'Alice', lastName: 'Doe', email: 'text2@example.com' },
+      {
+        firstName: 'Jennifer',
+        lastName: 'Doe',
+        email: 'text3@example.com',
+      },
+    ];
+    await new Promise(test => setTimeout(test, 3000));
+    setData(data);
+    setIsLoading(false);
+  };
+
+  return isLoading ? (
+    <View style={styles.container}>
+      <ActivityIndicator size="large" color="mediumvioletred" />
+    </View>
+  ) : (
     <View style={styles.container}>
       <FlatList
-        data={[
-          { firstName: 'Bob', lastName: 'Doe', email: 'text1@example.com' },
-          { firstName: 'Alice', lastName: 'Doe', email: 'text2@example.com' },
-          {
-            firstName: 'Jennifer',
-            lastName: 'Doe',
-            email: 'text3@example.com',
-          },
-        ]}
+        data={data}
         keyExtractor={item => item.email}
         renderItem={({ item }) => (
           <FriendListItem
@@ -38,6 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingTop: 40,
+    justifyContent: 'center',
   },
   listSeparator: {
     height: StyleSheet.hairlineWidth,
