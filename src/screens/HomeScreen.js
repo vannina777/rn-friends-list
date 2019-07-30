@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  ActivityIndicator,
+  Text,
+} from 'react-native';
 import FriendListItem from '../components/FriendListItem';
 
 export default function HomeScreen({ navigation }) {
@@ -11,18 +17,15 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   const fetchData = async () => {
-    const data = [
-      { firstName: 'Bob', lastName: 'Doe', email: 'text1@example.com' },
-      { firstName: 'Alice', lastName: 'Doe', email: 'text2@example.com' },
-      {
-        firstName: 'Jennifer',
-        lastName: 'Doe',
-        email: 'text3@example.com',
-      },
-    ];
-    await new Promise(test => setTimeout(test, 3000));
-    setData(data);
-    setIsLoading(false);
+    try {
+      const response = await fetch('https://randomuser.me/api/?results=20');
+      const users = await response.json();
+      setData(users.results);
+      setIsLoading(false);
+    } catch (err) {
+      alert('Network connection error');
+      setIsLoading(false);
+    }
   };
 
   return isLoading ? (
@@ -43,6 +46,9 @@ export default function HomeScreen({ navigation }) {
           />
         )}
         ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
+        ListEmptyComponent={() => (
+          <Text style={styles.listEmpty}>Unable to load data.</Text>
+        )}
       />
     </View>
   );
@@ -62,5 +68,10 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     backgroundColor: 'lightgray',
     marginVertical: 5,
+  },
+  listEmpty: {
+    paddingTop: 100,
+    fontSize: 32,
+    textAlign: 'center',
   },
 });

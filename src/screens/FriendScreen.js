@@ -10,7 +10,7 @@ export default function FriendScreen({ navigation }) {
       contentContainerStyle={styles.container}
     >
       <Image style={styles.image} source={require('../../assets/icon.png')} />
-      <Text>{friend.firstName}</Text>
+      <Text>{friend.name.first}</Text>
     </ScrollView>
   );
 }
@@ -18,7 +18,7 @@ export default function FriendScreen({ navigation }) {
 FriendScreen.navigationOptions = ({ navigation }) => {
   const friend = navigation.getParam('friend');
   return {
-    title: `${friend.firstName} ${friend.lastName}`,
+    title: `${friend.name.first} ${friend.name.last}`,
   };
 };
 
