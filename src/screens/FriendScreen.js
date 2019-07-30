@@ -1,11 +1,14 @@
 import React from 'react';
-import { StyleSheet, Image, Text, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, Image, Text, ScrollView } from 'react-native';
 
 export default function FriendScreen({ navigation }) {
   const friend = navigation.getParam('friend');
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      style={styles.scrollView}
+      contentContainerStyle={styles.container}
+    >
       <Image style={styles.image} source={require('../../assets/icon.png')} />
       <Text>{friend}</Text>
     </ScrollView>
@@ -16,15 +19,20 @@ FriendScreen.navigationOptions = ({ navigation }) => ({
   title: navigation.getParam('friend'),
 });
 
+const width = Dimensions.get('window').width * 0.75;
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 30,
+  },
+  scrollView: {
+    backgroundColor: '#fff',
   },
   image: {
-    width: 250,
-    height: 250,
+    width: width,
+    height: width,
     marginBottom: 20,
   },
 });
