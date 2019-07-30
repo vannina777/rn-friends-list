@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, View, Text, TouchableOpacity } from 'react-native';
+import capitalizeFirstLetter from '../helper';
 
 export default function FriendListItem({ friend, onPress }) {
   return (
@@ -8,7 +9,8 @@ export default function FriendListItem({ friend, onPress }) {
         <Image style={styles.image} source={{ uri: friend.picture.medium }} />
         <View style={styles.info}>
           <Text style={styles.name}>
-            {friend.name.first} {friend.name.last}
+            {capitalizeFirstLetter(friend.name.first)}{' '}
+            {capitalizeFirstLetter(friend.name.last)}
           </Text>
           <Text style={styles.email}>{friend.email}</Text>
         </View>

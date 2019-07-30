@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, Image, Text, ScrollView } from 'react-native';
+import capitalizeFirstLetter from '../helper';
 
 export default function FriendScreen({ navigation }) {
   const friend = navigation.getParam('friend');
@@ -10,7 +11,7 @@ export default function FriendScreen({ navigation }) {
       contentContainerStyle={styles.container}
     >
       <Image style={styles.image} source={{ uri: friend.picture.large }} />
-      <Text>{friend.name.first}</Text>
+      <Text>{capitalizeFirstLetter(friend.name.first)}</Text>
     </ScrollView>
   );
 }
@@ -18,7 +19,9 @@ export default function FriendScreen({ navigation }) {
 FriendScreen.navigationOptions = ({ navigation }) => {
   const friend = navigation.getParam('friend');
   return {
-    title: `${friend.name.first} ${friend.name.last}`,
+    title: `${capitalizeFirstLetter(friend.name.first)} ${capitalizeFirstLetter(
+      friend.name.last
+    )}`,
   };
 };
 
