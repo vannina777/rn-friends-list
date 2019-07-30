@@ -1,13 +1,29 @@
 import React from 'react';
-import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import {
+  createAppContainer,
+  createBottomTabNavigator,
+  createStackNavigator,
+} from 'react-navigation';
 import { Feather } from '@expo/vector-icons';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import FriendScreen from './screens/FriendScreen';
+
+const HomeStack = createStackNavigator(
+  { HomeScreen, FriendScreen },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: 'whitesmoke',
+      },
+    },
+  }
+);
 
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
-      screen: HomeScreen,
+      screen: HomeStack,
       navigationOptions: {
         title: 'Friends',
         // arrow function violates ESLint display-name rule
