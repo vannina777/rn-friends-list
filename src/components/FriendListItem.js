@@ -5,7 +5,7 @@ export default function FriendListItem({ friend, onPress }) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        <Image style={styles.image} source={require('../../assets/icon.png')} />
+        <Image style={styles.image} source={{ uri: friend.picture.medium }} />
         <View style={styles.info}>
           <Text style={styles.name}>
             {friend.name.first} {friend.name.last}

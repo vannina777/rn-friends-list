@@ -9,7 +9,7 @@ export default function FriendScreen({ navigation }) {
       style={styles.scrollView}
       contentContainerStyle={styles.container}
     >
-      <Image style={styles.image} source={require('../../assets/icon.png')} />
+      <Image style={styles.image} source={{ uri: friend.picture.large }} />
       <Text>{friend.name.first}</Text>
     </ScrollView>
   );
@@ -22,7 +22,7 @@ FriendScreen.navigationOptions = ({ navigation }) => {
   };
 };
 
-const width = Dimensions.get('window').width * 0.75;
+const width = Dimensions.get('window').width * 0.6;
 
 const styles = StyleSheet.create({
   container: {
@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
     width: width,
     height: width,
     marginBottom: 20,
+    borderRadius: 10,
   },
 });
