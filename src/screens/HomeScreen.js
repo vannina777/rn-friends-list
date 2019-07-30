@@ -1,17 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
+import FriendListItem from '../components/FriendListItem';
 
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Hello from Home!</Text>
-      <Button
-        title="View Bob"
-        onPress={() => navigation.navigate('FriendScreen', { friend: 'Bob' })}
-      />
-      <Button
-        title="View Alice"
-        onPress={() => navigation.navigate('FriendScreen', { friend: 'Alice' })}
+      <FlatList
+        data={[{ name: 'Bob' }, { name: 'Alice' }, { name: 'Jennifer' }]}
+        keyExtractor={item => item.name}
+        renderItem={({ item }) => (
+          <FriendListItem
+            friend={item.name}
+            onPress={() =>
+              navigation.navigate('FriendScreen', { friend: item.name })
+            }
+          />
+        )}
       />
     </View>
   );
@@ -24,7 +28,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 40,
   },
 });
