@@ -6,13 +6,21 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={[{ name: 'Bob' }, { name: 'Alice' }, { name: 'Jennifer' }]}
-        keyExtractor={item => item.name}
+        data={[
+          { firstName: 'Bob', lastName: 'Doe', email: 'text1@example.com' },
+          { firstName: 'Alice', lastName: 'Doe', email: 'text2@example.com' },
+          {
+            firstName: 'Jennifer',
+            lastName: 'Doe',
+            email: 'text3@example.com',
+          },
+        ]}
+        keyExtractor={item => item.email}
         renderItem={({ item }) => (
           <FriendListItem
-            friend={item.name}
+            friend={item}
             onPress={() =>
-              navigation.navigate('FriendScreen', { friend: item.name })
+              navigation.navigate('FriendScreen', { friend: item })
             }
           />
         )}

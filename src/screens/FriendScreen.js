@@ -10,14 +10,17 @@ export default function FriendScreen({ navigation }) {
       contentContainerStyle={styles.container}
     >
       <Image style={styles.image} source={require('../../assets/icon.png')} />
-      <Text>{friend}</Text>
+      <Text>{friend.firstName}</Text>
     </ScrollView>
   );
 }
 
-FriendScreen.navigationOptions = ({ navigation }) => ({
-  title: navigation.getParam('friend'),
-});
+FriendScreen.navigationOptions = ({ navigation }) => {
+  const friend = navigation.getParam('friend');
+  return {
+    title: `${friend.firstName} ${friend.lastName}`,
+  };
+};
 
 const width = Dimensions.get('window').width * 0.75;
 
