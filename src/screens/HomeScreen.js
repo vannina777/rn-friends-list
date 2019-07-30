@@ -28,6 +28,11 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
+  const refresh = () => {
+    setIsLoading(true);
+    fetchData();
+  };
+
   return isLoading ? (
     <View style={styles.container}>
       <ActivityIndicator size="large" color="mediumvioletred" />
@@ -45,6 +50,9 @@ export default function HomeScreen({ navigation }) {
             }
           />
         )}
+        // enable pull-to-refresh
+        onRefresh={refresh}
+        refreshing={isLoading}
         ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
         ListEmptyComponent={() => (
           <Text style={styles.listEmpty}>Unable to load data.</Text>
