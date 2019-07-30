@@ -1,6 +1,6 @@
 import React from 'react';
 import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
-import { Icon } from 'expo';
+import { Feather } from '@expo/vector-icons';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 
@@ -12,7 +12,7 @@ const TabNavigator = createBottomTabNavigator(
         title: 'Friends',
         // arrow function violates ESLint display-name rule
         tabBarIcon: function tabBarIcon({ tintColor }) {
-          return <Icon.Feather name="home" size={24} color={tintColor} />;
+          return <Feather name="home" size={24} color={tintColor} />;
         },
       },
     },
@@ -21,7 +21,7 @@ const TabNavigator = createBottomTabNavigator(
       navigationOptions: {
         title: 'Settings',
         tabBarIcon: function tabBarIcon({ tintColor }) {
-          return <Icon.Feather name="settings" size={24} color={tintColor} />;
+          return <Feather name="settings" size={24} color={tintColor} />;
         },
       },
     },
