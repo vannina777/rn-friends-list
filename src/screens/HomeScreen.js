@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Text,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import FriendListItem from '../components/FriendListItem';
 
 export default function HomeScreen({ navigation }) {
@@ -46,8 +47,7 @@ export default function HomeScreen({ navigation }) {
           <FriendListItem
             friend={item}
             onPress={() =>
-              navigation.navigate('FriendScreen', { friend: item })
-            }
+              navigation.navigate('FriendScreen', { friend: item })}
           />
         )}
         // enable pull-to-refresh
@@ -83,3 +83,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+HomeScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};

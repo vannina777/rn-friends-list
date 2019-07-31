@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, View, Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 import capitalizeFirstLetter from '../helper';
 
 export default function FriendListItem({ friend, onPress }) {
@@ -42,3 +43,17 @@ const styles = StyleSheet.create({
     fontWeight: '100',
   },
 });
+
+FriendListItem.propTypes = {
+  friend: PropTypes.shape({
+    name: PropTypes.shape({
+      first: PropTypes.string.isRequired,
+      last: PropTypes.string.isRequired,
+    }),
+    email: PropTypes.string.isRequired,
+    picture: PropTypes.shape({
+      medium: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+  onPress: PropTypes.func.isRequired,
+};

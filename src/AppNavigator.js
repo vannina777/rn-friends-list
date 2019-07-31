@@ -4,6 +4,7 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
+import PropTypes from 'prop-types';
 import { Feather } from '@expo/vector-icons';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -20,25 +21,28 @@ const HomeStack = createStackNavigator(
   }
 );
 
+const TabFriendsIcon = ({ tintColor }) => (
+  <Feather name="home" size={24} color={tintColor} />
+);
+
+const TabSettingsIconIcon = ({ tintColor }) => (
+  <Feather name="settings" size={24} color={tintColor} />
+);
+
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
       navigationOptions: {
         title: 'Friends',
-        // arrow function violates ESLint display-name rule
-        tabBarIcon: function tabBarIcon({ tintColor }) {
-          return <Feather name="home" size={24} color={tintColor} />;
-        },
+        tabBarIcon: TabFriendsIcon,
       },
     },
     Settings: {
       screen: SettingsScreen,
       navigationOptions: {
         title: 'Settings',
-        tabBarIcon: function tabBarIcon({ tintColor }) {
-          return <Feather name="settings" size={24} color={tintColor} />;
-        },
+        tabBarIcon: TabSettingsIconIcon,
       },
     },
   },
@@ -55,3 +59,11 @@ const TabNavigator = createBottomTabNavigator(
 );
 
 export default createAppContainer(TabNavigator);
+
+TabFriendsIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
+TabSettingsIconIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
